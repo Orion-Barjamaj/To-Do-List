@@ -1,0 +1,364 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('./Oswald-VariableFont_wght.ttf') format('truetype');
+}
+
+*{
+    font-family: 'MyFont';
+}
+
+body, html{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+    background-color: #fff;
+}
+
+.content{
+    display: flex;
+    width: 100%;
+}
+
+#sidebar{
+    width: 20%;
+    height: 100%;
+    background-color: #E6E8E6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 220px;
+}
+
+.home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%
+}
+
+.title{
+    font-size: 40px;
+    text-align: center;
+    color: #191919;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    width: 80%;
+}
+
+#btn{
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    color: #797D81;
+    font-size: 30px;
+    transition: .5s;
+    width: 100%;
+}
+
+#btn:hover{
+    background-color: white;
+    cursor: pointer;
+    font-weight: bold;
+    color: #191919;
+}
+
+.projects{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.addProject{
+    width: 75%;
+    height: 50px;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    justify-content: center;
+    border: none;
+    color: #797D81;
+    background-color: #F8F8FF;
+    transition: .2s;
+}
+
+#projectName{
+    display: none;
+    box-sizing: border-box;
+    padding: 20px;
+    font-size: 26px;
+    width: 75%;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    transition: .2s;
+}   
+
+#projectName:focus{
+    border: none;
+    outline: none;
+    transform: scale(1.1);
+}
+
+.addProject:hover{
+    background-color: #F15025;
+    border-radius: 25px;
+    color: #191919;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.projectGrid{
+    width: 80%;
+    height: 350px;
+    margin-top: 30px;
+    display: grid;
+    overflow: auto;
+}
+
+.projectObj{
+    box-sizing: border-box;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 10px;
+    margin: 10px;
+    max-height: 50px;
+    min-height: 50px;
+    border-radius: 10px;
+    font-size: 25px;
+    border-left: 15px solid #F15025;
+    transition: .5s;
+}
+
+.projectObj:hover{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    cursor: pointer;
+}
+
+.container{
+    height: 75px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.removeBtn{
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-color: white;
+    margin-left: auto;
+    background-image: url("trash-bin.png");
+    background-size: contain;
+    transition: .2s;
+}
+
+.removeBtn:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.tasksTitle{
+    font-size: 60px;
+    margin-left: 50px;
+}
+
+.tasks{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.addTask{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    font-size: 50px;
+    margin-top: auto;
+    margin-bottom: 30px;
+    border-radius: 100px;
+    border: none;
+    color: white;
+    font-size: 77px;
+    background-color: #F15025;
+    width: 90%;
+    height: 75px;
+    transition: .2s;
+}
+
+.addTask:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+.taskWindow{
+    position: absolute;
+    width: 650px;
+    height: 600px;
+    background-color: #E6E8E6;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.taskText{
+    width: 100%;
+    height: 90px;
+    background-color: #191919;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.taskForm{
+    box-sizing: border-box;
+    padding: 20px;
+    color: #191919;
+    font-size: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#taskName{
+    height: 35px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+#taskDescription{
+    height: 100px;
+    width: 100%;
+    resize: none;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+#priority{
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.radioHandeler{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(yellow);
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+}
+  
+input[type="radio"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(yellow);
+    background-color: CanvasText;
+}
+
+#priority:hover{
+    cursor: pointer;
+}
+  
+input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+#priority{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+input[type="date"]{
+    height: 40px;
+    font-size: 20px;
+}
+
+.buttonHandlers{
+    width: 100%;
+    display: flex;
+    height: 75px;
+    margin-top: 15px;
+    gap: 15px;
+}
+
+.taskButtons{
+    width: 50%;
+    height: 100%;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: none;
+    transition: .2s;
+    color: white;
+}
+
+.taskButtons:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#nevermind{
+    background-color: #191919;
+}
+
+#add{
+    background-color: #F15025;
+}
+
+.taskGrid{
+    align-self: center;
+    width: 95%;
+    height: 100%;
+    margin-bottom: 15px;
+    display: grid;
+    overflow: auto;
+    grid-template-columns: 450px 450px 450px;
+    gap: 30px;
+    justify-content: center;
+}
+
+.taskObj{
+    background-color: #E6E8E6;
+    height: 450px;
+    border-radius: 15px;
+}
