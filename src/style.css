@@ -139,8 +139,8 @@ body{
 }
 
 .projectObj:hover{
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .container{
@@ -158,6 +158,7 @@ body{
     margin-left: auto;
     background-image: url("trash-bin.png");
     background-size: contain;
+    background-repeat: no-repeat;
     transition: .2s;
 }
 
@@ -292,7 +293,7 @@ input[type="radio"]::before {
     background-color: CanvasText;
 }
 
-#priority:hover{
+#priority:hover, input[type="radio"]:hover{
     cursor: pointer;
 }
   
@@ -351,7 +352,7 @@ input[type="date"]{
     height: 100%;
     margin-bottom: 15px;
     display: grid;
-    overflow: auto;
+    overflow-x: auto;
     grid-template-columns: 450px 450px 450px;
     gap: 30px;
     justify-content: center;
@@ -361,4 +362,48 @@ input[type="date"]{
     background-color: #E6E8E6;
     height: 450px;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.taskTitle{
+    font-size: 50px;
+    text-align: center;
+}
+
+.taskDesc{
+    width: 85%;
+    height: 200px;
+    overflow: auto;
+    font-size: 20px;
+}
+
+.taskRemove{
+    margin-top: auto;
+    width: 90%;
+    height: 60px;
+    font-size: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #191919;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    transition: .5s;
+}
+
+.taskRemove:hover{
+    background-color: #fff;
+    transform: scale(1.05);
+    cursor: pointer;
+    color: #191919;
+}
+
+.taskDate{
+    font-weight: bold;
+    font-size: 25px;
 }
