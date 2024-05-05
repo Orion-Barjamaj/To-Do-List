@@ -1,16 +1,17 @@
 const grid = document.querySelector('.projectGrid');
 let getId = 0;
 const allTask = document.querySelector('.allTask');
+let projectArray = [];
 
 if(!localStorage.getItem('projectList')){
     localStorage.setItem('projectList', JSON.stringify(projectArray));
 }
 
 const saveProjectArray = JSON.parse(localStorage.getItem("projectList"));
-let projectArray = saveProjectArray;
+projectArray = [saveProjectArray];
 
 allTask.addEventListener('click', (e) => {
-    console.log(saveProjectArray);
+    console.log(projectArray);
 });
 
 function Project(name, id){
@@ -19,7 +20,11 @@ function Project(name, id){
 }
 
 export default function makeProject(projectName){
-    getId++;
+    projectArray.forEach(element => {
+        if(element.id === getId){
+            getId++;
+        }
+    });
 
     const newProjectObj = new Project(projectName, getId);
 
@@ -50,7 +55,7 @@ export default function makeProject(projectName){
     removeBtn.addEventListener('click', (e) => {
         newProject.remove();
         for(let i = 0; i < projectArray.length; i++){
-            if(projectArray[i].id == newProjectObj.id){
+            if(projectArray[i].id === newProjectObj.id){
                 projectArray.splice(i, 1);
                 localStorage.setItem('projectList', JSON.stringify(projectArray));
                 break;
