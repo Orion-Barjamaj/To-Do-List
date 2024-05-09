@@ -1,43 +1,33 @@
-import RenderPage from '../render/renderProjectPage.js';
+import RenderPage from './renderProjectPage.js';
 
+let savedArray = JSON.parse(localStorage.getItem("projectList"));
 const grid = document.querySelector('.projectGrid');
-let getId = 1;
-let projectArray = [];
-
-if(!localStorage.getItem('projectList')){
-    localStorage.setItem('projectList', JSON.stringify(projectArray));
-}
-
-const saveProjectArray = JSON.parse(localStorage.getItem("projectList"));
-projectArray = saveProjectArray;
 
 function Project(name, id){
     this.name = name;
     this.id = id;
 }
 
-export default function makeProject(projectName){
-    projectArray = JSON.parse(localStorage.getItem("projectList"));
+savedArray.forEach(element => {
+    makeProject(element.name, element.id);
+});
 
-    projectArray.forEach(element => {
-        if(element.id === getId){
-            getId++;
-        }
-    });
+function makeProject(projectName, id){
+    savedArray = JSON.parse(localStorage.getItem("projectList"));
 
-    const newProjectObj = new Project(projectName, getId);
+    const newProjectObj = new Project(projectName, id);
 
     const newProject = document.createElement('div');
     newProject.classList.add('projectObj');
     grid.insertBefore(newProject, grid.firstChild);
 
-    newProject.setAttribute('id', getId);
+    newProject.setAttribute('id', id);
    
     const title = document.createElement('div');
     title.classList.add('projectTitle');
     title.textContent = newProjectObj.name;
     title.addEventListener('click', (e) => {
-        RenderPage(newProjectObj.name);
+        RenderPage(newProjectObj.name, newProjectObj.id);
     });
     newProject.appendChild(title);
 
@@ -57,19 +47,20 @@ export default function makeProject(projectName){
     removeBtn.addEventListener('click', (e) => {
         let taskArray = JSON.parse(localStorage.getItem("taskList"));
         newProject.remove();
-        for(let i = 0; i < projectArray.length; i++){
-            if(projectArray[i].id === newProjectObj.id){
-                projectArray.splice(i, 1);
-                localStorage.setItem('projectList', JSON.stringify(projectArray));
+        for(let i = 0; i < savedArray.length; i++){
+            if(savedArray[i].id === id){
+                savedArray.splice(i, 1);
+                localStorage.setItem('projectList', JSON.stringify(savedArray));
                 break;
             }
         }
         for(let i = taskArray.length - 1; i >= 0; i--){
-            if(taskArray[i].parent === newProjectObj.id){
+            if(taskArray[i].parent === String(newProjectObj.id)){
                 taskArray.splice(i, 1);
                 localStorage.setItem('taskList', JSON.stringify(taskArray));
             }
-        }    
+        }  
+        savedArray = JSON.parse(localStorage.getItem("projectList"));
     });
 
     editBtn.addEventListener('click', (event) => {
@@ -88,12 +79,14 @@ export default function makeProject(projectName){
                 title.style.display = 'flex';
                 editField.value = '';
                 editField.style.display = 'none';
-                localStorage.setItem('projectList', JSON.stringify(projectArray));
+                savedArray.forEach(element => {
+                    if(element.id === newProjectObj.id){
+                        element.name = newProjectObj.name;
+                        RenderPage(newProjectObj.name, newProjectObj.id);
+                    }
+                });
+                localStorage.setItem('projectList', JSON.stringify(savedArray));
             }
         }
     });
-    
-    projectArray.push(newProjectObj);
-
-    localStorage.setItem('projectList', JSON.stringify(projectArray));
 }

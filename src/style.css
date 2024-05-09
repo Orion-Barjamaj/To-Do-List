@@ -131,9 +131,10 @@ body{
 
 .projectGrid{
     width: 80%;
-    height: 350px;
+    max-height: 350px;
     margin-top: 30px;
     display: grid;
+    grid-auto-flow: row;
     overflow: auto;
 }
 
@@ -154,8 +155,11 @@ body{
 }
 
 .projectObj:hover{
-    cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.projectTitle:hover{
+    cursor: pointer;
 }
 
 .container{
@@ -234,6 +238,7 @@ body{
 }
 
 .taskWindow{
+    z-index: 10;
     position: absolute;
     width: 650px;
     height: 600px;
@@ -374,14 +379,15 @@ input[type="date"]{
     background-color: #191919;
 }
 
-#add{
+#add, #editAdd{
     background-color: #F15025;
 }
 
 .taskGrid{
     align-self: center;
     width: 95%;
-    height: 100%;
+    max-height: 100%;
+    padding: 10px;
     margin-bottom: 15px;
     display: grid;
     grid-template-columns: 100%;
@@ -397,7 +403,6 @@ input[type="date"]{
     height: 100px;
     border-radius: 15px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
@@ -436,6 +441,18 @@ input[type="date"]{
     display: flex;
 }
 
+.editTaskButton{
+    width: 60px;
+    height: 60px;
+    background-image: url('./editBlack.png');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: contain;
+    border: none;
+    margin-right: 20px;
+    transition: .5s;
+}
+
 .taskRemove{
     width: 60px;
     height: 60px;
@@ -448,7 +465,7 @@ input[type="date"]{
     transition: .5s;
 }
 
-.taskRemove:hover{
+.taskRemove:hover, .editTaskButton:hover{
     transform: scale(1.05);
     cursor: pointer;
 }

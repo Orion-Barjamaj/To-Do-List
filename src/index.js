@@ -1,6 +1,10 @@
 import _ from 'lodash';
 import './style.css';
 import Projects from './create/project.js';
+import RenderProjects from './render/renderProject.js';
+import RenderProjectsPage from './render/renderProjectPage.js';
+import MakeTask from './create/task.js';
+import RenderPages from './render/homeRender.js';
 
 const addButton = document.querySelector('.addProject');
 const inputField = document.getElementById('projectName');
@@ -10,6 +14,8 @@ addButton.addEventListener('click', (event) =>{
     addButton.style.display = 'none';
     inputField.focus();
 });
+
+RenderPages();
 
 inputField.addEventListener('keyup', (event) => {
     if(event.key === 'Enter'){
