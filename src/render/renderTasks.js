@@ -25,9 +25,13 @@ export default function renderTasks(name, desc, priority, date, id, checked){
     taskElement.classList.add('taskObj');
     taskGrid.insertBefore(taskElement, taskGrid.firstChild);
 
+    const taskContainer = document.createElement('div');
+    taskContainer.classList.add('taskContainer');
+    taskElement.appendChild(taskContainer);
+
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
-    taskElement.appendChild(checkbox);
+    taskContainer.appendChild(checkbox);
 
     const taskStorage = new Task(name, desc, priority, dueDate, id);
 
@@ -57,7 +61,7 @@ export default function renderTasks(name, desc, priority, date, id, checked){
     const title = document.createElement('div');
     title.classList.add('taskTitle');
     title.textContent = name;
-    taskElement.appendChild(title);
+    taskContainer.appendChild(title);
 
     if(taskStorage.checked == true){
         title.innerHTML = `<s>${name}</s>`;
@@ -72,10 +76,21 @@ export default function renderTasks(name, desc, priority, date, id, checked){
     description.textContent = desc;
     taskElement.appendChild(description);
 
+    let displayBool = false;
+
+    taskElement.addEventListener('click', (e) =>{
+        displayBool = !displayBool;
+        if(displayBool == false){
+            description.style.display = 'flex';
+        } else {
+            description.style.display = 'none';
+        }
+    });
+
     const taskDueDate = document.createElement('div');
     taskDueDate.classList.add('taskDate');
     taskDueDate.textContent = date;
-    taskElement.appendChild(taskDueDate);
+    taskContainer.appendChild(taskDueDate);
 
     if(priority === 'low'){
         taskElement.style.borderLeft = '45px solid #ced0ce';
@@ -87,7 +102,7 @@ export default function renderTasks(name, desc, priority, date, id, checked){
 
     const editButton = document.createElement('button');
     editButton.classList.add('editTaskButton');
-    taskElement.appendChild(editButton);
+    taskContainer.appendChild(editButton);
 
     editButton.addEventListener('click', (event) => {
         const editAdd = document.querySelector('#editAdd');
@@ -136,7 +151,7 @@ export default function renderTasks(name, desc, priority, date, id, checked){
 
     const removeButton = document.createElement('button');
     removeButton.classList.add('taskRemove');
-    taskElement.appendChild(removeButton);
+    taskContainer.appendChild(removeButton);
 
     removeButton.addEventListener('click', (e) => {
         taskElement.remove();

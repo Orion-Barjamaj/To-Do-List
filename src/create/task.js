@@ -33,17 +33,20 @@ function Task(title, description, priority, dueDate, parent, checked){
 function makeTask(name, desc, priority, date){
     let projectArray = JSON.parse(localStorage.getItem("projectList"));
     const projectTitle = document.querySelector('.projectTitle');
-    const projectObj = document.querySelector('.projectObj');
 
     const taskGrid = document.querySelector(".taskGrid");
 
     const taskElement = document.createElement('div');
     taskElement.classList.add('taskObj');
     taskGrid.insertBefore(taskElement, taskGrid.firstChild);
+    
+    const taskContainer = document.createElement('div');
+    taskContainer.classList.add('taskContainer');
+    taskElement.appendChild(taskContainer);
 
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
-    taskElement.appendChild(checkbox);
+    taskContainer.appendChild(checkbox);
     let checkboxBool = false;
     if(checkboxBool == true){
         checkbox.checked = true;
@@ -54,17 +57,28 @@ function makeTask(name, desc, priority, date){
     const title = document.createElement('div');
     title.classList.add('taskTitle');
     title.textContent = name;
-    taskElement.appendChild(title);
+    taskContainer.appendChild(title);
 
     const description = document.createElement('p');
     description.classList.add('taskDesc');
     description.textContent = desc;
     taskElement.appendChild(description);
 
+    let displayBool = false;
+
+    taskElement.addEventListener('click', (e) =>{
+        displayBool = !displayBool;
+        if(displayBool == false){
+            description.style.display = 'flex';
+        } else {
+            description.style.display = 'none';
+        }
+    });
+
     const taskDueDate = document.createElement('div');
     taskDueDate.classList.add('taskDate');
     taskDueDate.textContent = date;
-    taskElement.appendChild(taskDueDate);
+    taskContainer.appendChild(taskDueDate);
 
     const taskStorage = new Task(name, desc, priority, taskDueDate.textContent, checkboxBool);
 
@@ -103,7 +117,7 @@ function makeTask(name, desc, priority, date){
 
     const editButton = document.createElement('button');
     editButton.classList.add('editTaskButton');
-    taskElement.appendChild(editButton);
+    taskContainer.appendChild(editButton);
 
     editButton.addEventListener('click', (event) => {
         const editAdd = document.querySelector('#editAdd');
@@ -145,7 +159,7 @@ function makeTask(name, desc, priority, date){
 
     const removeButton = document.createElement('button');
     removeButton.classList.add('taskRemove');
-    taskElement.appendChild(removeButton);
+    taskContainer.appendChild(removeButton);
 
     removeButton.addEventListener('click', (e) => {
         taskElement.remove();
