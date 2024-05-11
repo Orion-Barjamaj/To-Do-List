@@ -32,6 +32,7 @@ function Task(title, description, priority, dueDate, parent, checked){
 
 function makeTask(name, desc, priority, date){
     let projectArray = JSON.parse(localStorage.getItem("projectList"));
+
     const projectTitle = document.querySelector('.projectTitle');
 
     const taskGrid = document.querySelector(".taskGrid");
@@ -64,7 +65,7 @@ function makeTask(name, desc, priority, date){
     description.textContent = desc;
     taskElement.appendChild(description);
 
-    let displayBool = false;
+    let displayBool = true;
 
     taskElement.addEventListener('click', (e) =>{
         displayBool = !displayBool;
@@ -154,6 +155,9 @@ function makeTask(name, desc, priority, date){
 
             localStorage.setItem('taskList', JSON.stringify(taskArray));
             taskWindow.style.display = 'none';
+            taskName.value = '';
+            taskDesc.value = '';
+            taskDate.value = '';
         });
     });
 
@@ -174,4 +178,8 @@ function makeTask(name, desc, priority, date){
 
     taskArray.push(taskStorage);
     localStorage.setItem('taskList', JSON.stringify(taskArray));
+
+    taskName.value = '';
+    taskDesc.value = '';
+    taskDate.value = '';
 }

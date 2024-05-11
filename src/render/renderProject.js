@@ -1,4 +1,5 @@
 import RenderPage from './renderProjectPage.js';
+import RenderHome from './homeRender.js';
 
 let savedArray = JSON.parse(localStorage.getItem("projectList"));
 const grid = document.querySelector('.projectGrid');
@@ -55,12 +56,13 @@ function makeProject(projectName, id){
             }
         }
         for(let i = taskArray.length - 1; i >= 0; i--){
-            if(taskArray[i].parent === String(newProjectObj.id)){
+            if(taskArray[i].parent === newProjectObj.id){
                 taskArray.splice(i, 1);
                 localStorage.setItem('taskList', JSON.stringify(taskArray));
             }
         }  
         savedArray = JSON.parse(localStorage.getItem("projectList"));
+        RenderHome();
     });
 
     editBtn.addEventListener('click', (event) => {

@@ -76,7 +76,7 @@ export default function renderTasks(name, desc, priority, date, id, checked){
     description.textContent = desc;
     taskElement.appendChild(description);
 
-    let displayBool = false;
+    let displayBool = true;
 
     taskElement.addEventListener('click', (e) =>{
         displayBool = !displayBool;
@@ -146,6 +146,9 @@ export default function renderTasks(name, desc, priority, date, id, checked){
 
             localStorage.setItem('taskList', JSON.stringify(taskArray));
             taskWindow.style.display = 'none';
+            taskName.value = '';
+            taskDesc.value = '';
+            taskDate.value = '';
         });
     });
 

@@ -1,4 +1,5 @@
 import RenderPage from '../render/renderProjectPage.js';
+import RenderHome from '../render/homeRender.js';
 
 const grid = document.querySelector('.projectGrid');
 let getId = 1;
@@ -70,6 +71,7 @@ export default function makeProject(projectName){
                 localStorage.setItem('taskList', JSON.stringify(taskArray));
             }
         }    
+        RenderHome();
     });
 
     editBtn.addEventListener('click', (event) => {

@@ -11,6 +11,7 @@ allTask.addEventListener('click', (e) => {
 
 export default function RenderAllTask(){
     taskArray = JSON.parse(localStorage.getItem("taskList"));
+
     while(tasksWindow.firstChild){
         tasksWindow.removeChild(tasksWindow.firstChild);
     }
@@ -29,6 +30,7 @@ export default function RenderAllTask(){
 const important = document.querySelector('.important');
 important.addEventListener('click', (e) => {
     taskArray = JSON.parse(localStorage.getItem("taskList"));
+
     while(tasksWindow.firstChild){
         tasksWindow.removeChild(tasksWindow.firstChild);
     }
@@ -49,6 +51,7 @@ important.addEventListener('click', (e) => {
 const completed = document.querySelector('.completed');
 completed.addEventListener('click', (e) => {
     taskArray = JSON.parse(localStorage.getItem("taskList"));
+    
     while(tasksWindow.firstChild){
         tasksWindow.removeChild(tasksWindow.firstChild);
     }

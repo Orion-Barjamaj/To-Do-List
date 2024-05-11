@@ -8,11 +8,18 @@ import RenderPages from './render/homeRender.js';
 
 const addButton = document.querySelector('.addProject');
 const inputField = document.getElementById('projectName');
+const nevermind = document.getElementById('nevermind');
+const taskForm = document.querySelector('.taskWindow');
 
 addButton.addEventListener('click', (event) =>{
     inputField.style.display = 'flex';
     addButton.style.display = 'none';
     inputField.focus();
+});
+
+nevermind.addEventListener('click', (event) => {
+    event.preventDefault();
+    taskForm.style.display = 'none';
 });
 
 RenderPages();
