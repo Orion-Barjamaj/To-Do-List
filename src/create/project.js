@@ -38,7 +38,7 @@ export default function makeProject(projectName){
     title.classList.add('projectTitle');
     title.textContent = newProjectObj.name;
     title.addEventListener('click', (e) => {
-        RenderPage(newProjectObj.name);
+        RenderPage(newProjectObj.name, newProjectObj.id);
     });
     newProject.appendChild(title);
 
